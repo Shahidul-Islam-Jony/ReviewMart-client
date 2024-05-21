@@ -10,7 +10,7 @@ const Navbar = () => {
     <div>
       <div className="navbar">
         {/* small devices */}
-        <div className="navbar-start w-fit gap-10">
+        <div className="navbar-start w-fit">
           <div className="dropdown">
             <div
               tabIndex={0}
@@ -56,7 +56,7 @@ const Navbar = () => {
               ""
             )}
           </div>
-          <Link to="/" className="w-32 mr-16">
+          <Link to="/" className="w-32 mr-16 text-lg font-bold">
             ReviewMart
           </Link>
         </div>
