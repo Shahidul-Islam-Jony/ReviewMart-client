@@ -1,4 +1,4 @@
-import Lottie from "lottie-react";
+import Lottie from "lottie-react";      // npm install lottie-react
 import reviews from "../../../animation/reviews.json";
 
 const Banner = () => {

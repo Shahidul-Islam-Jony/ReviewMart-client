@@ -86,7 +86,7 @@ const Navbar = () => {
         <div className="navbar-end">
           <Link
             to="/login"
-            className="btn btn-sm btn-outline text-base font-bold"
+            className="btn btn-sm btn-outline text-base font-bold hover:bg-blue-100 hover:text-black"
           >
             Login
           </Link>
