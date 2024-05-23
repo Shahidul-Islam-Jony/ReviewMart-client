@@ -1,10 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import "./active.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { CiUser } from "react-icons/ci";
+import { BiMenuAltRight } from "react-icons/bi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useContext(AuthContext);
+  // console.log(user);
 
   return (
     <div>
@@ -84,12 +90,25 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link
-            to="/login"
-            className="btn btn-sm btn-outline text-base font-bold hover:bg-blue-100 hover:text-black"
-          >
-            Login
-          </Link>
+          {user ? (
+            <div className="flex text-xl flex-row">
+              <div className="flex gap-4">
+                <AiOutlineShoppingCart />
+                <CiUser />
+              </div>
+              <div className="divider lg:divider-horizontal"></div>
+              <div className="">
+                <BiMenuAltRight />
+              </div>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="btn btn-sm btn-outline text-base font-bold hover:bg-blue-100 hover:text-black"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
