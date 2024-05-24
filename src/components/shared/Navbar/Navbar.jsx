@@ -9,8 +9,14 @@ import { BiMenuAltRight } from "react-icons/bi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   // console.log(user);
+  const [isProfileClick, setIsProfileClicked] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    setIsProfileClicked(false);
+  };
 
   return (
     <div>
@@ -91,20 +97,41 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {user ? (
-            <div className="flex text-xl flex-row">
-              <div className="flex gap-4">
-                <AiOutlineShoppingCart />
-                <CiUser />
-              </div>
-              <div className="divider lg:divider-horizontal"></div>
-              <div className="">
-                <BiMenuAltRight />
+            <div className="flex items-center gap-4">
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="">
+                  <div className="flex text-xl flex-row">
+                    <div className="flex gap-4">
+                      <AiOutlineShoppingCart />
+                      <div onClick={() => setIsProfileClicked(!isProfileClick)}>
+                        <CiUser />
+                      </div>
+                    </div>
+                    <div className="divider lg:divider-horizontal"></div>
+                    <div className="">
+                      <BiMenuAltRight />
+                    </div>
+                  </div>
+                </div>
+                {isProfileClick && (
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                  >
+                    <Link
+                      onClick={handleLogout}
+                      className="flex items-center gap-2 hover:bg-green-800 hover:text-white rounded-lg p-2"
+                    >
+                      Logout
+                    </Link>
+                  </ul>
+                )}
               </div>
             </div>
           ) : (
             <Link
               to="/login"
-              className="btn btn-sm btn-outline text-base font-bold hover:bg-blue-100 hover:text-black"
+              className="btn btn-sm btn-outline text-base font-bold text-blue-600 hover:bg-green-800"
             >
               Login
             </Link>
