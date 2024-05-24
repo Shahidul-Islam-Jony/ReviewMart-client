@@ -1,6 +1,7 @@
 import AboutUs from "../../components/Home/AboutUs/AboutUs";
 import Banner from "../../components/Home/Banner/Banner";
 import BestSelling from "../../components/Home/BestSelling/BestSelling";
+import Categories from "../../components/Home/Categories/Categories";
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <Banner></Banner>
             <BestSelling></BestSelling>
             <AboutUs></AboutUs>
+            <Categories></Categories>
         </div>
     );
 };

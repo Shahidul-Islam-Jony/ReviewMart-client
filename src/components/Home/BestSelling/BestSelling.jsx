@@ -5,8 +5,8 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 const BestSelling = () => {
   return (
-    <div className="grid grid-cols-12 mt-10">
-      <div className="col-span-3">
+    <div className="grid grid-cols-1 md:grid-cols-12 mt-10">
+      <div className="md:col-span-3">
         <h2 className="text-3xl font-bold mb-2">
           Best Selling <br /> Products
         </h2>
@@ -18,7 +18,7 @@ const BestSelling = () => {
           See more <FaArrowRightLong />
         </button>
       </div>
-      <div className="grid grid-cols-3 col-span-9 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 col-span-9 gap-4">
         <div className="card card-compact bg-base-100 shadow-xl">
           <figure>
             <img

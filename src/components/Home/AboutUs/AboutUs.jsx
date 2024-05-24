@@ -11,7 +11,7 @@ const AboutUs = () => {
           Order now and purchase your favourite products
         </p>
       </div>
-      <div className="grid grid-cols-3 gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
         <div className="text-center">
           <div className="flex justify-center">
             <span className="text-6xl justify-center bg-blue-300 rounded-full p-4">
@@ -37,7 +37,6 @@ const AboutUs = () => {
           </p>
         </div>
         <div className="text-center">
-          <FaBox />
           <div className="flex justify-center">
             <span className="text-6xl justify-center bg-blue-300 rounded-full p-4">
               <BsFillTelephoneOutboundFill />
