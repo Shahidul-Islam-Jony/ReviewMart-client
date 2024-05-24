@@ -131,7 +131,7 @@ const Navbar = () => {
           ) : (
             <Link
               to="/login"
-              className="btn btn-sm btn-outline text-base font-bold text-blue-600 hover:bg-green-800"
+              className="btn btn-sm btn-outline text-base font-bold hover:bg-blue-100 hover:text-black"
             >
               Login
             </Link>
