@@ -5,6 +5,9 @@ import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { CiLocationArrow1 } from "react-icons/ci";
 
 import "@smastrom/react-rating/style.css";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -12,6 +15,34 @@ const ProductDetails = () => {
 
   const product = useGetSingleProduct(id);
   console.log(product);
+
+  const {user} = useContext(AuthContext);
+
+  const AxiosPublic = useAxiosPublic();
+
+  const handleGiveReview = e =>{
+    e.preventDefault();
+    const form = e.target;
+    const reviewer_name = form.name.value;
+    const rating = form.rating.value;
+    const review_text = form.comment.value;
+    // console.log(reviewer_name,review_text,rating);
+
+    const reviewData = {
+        reviewer_name,
+        rating,
+        review_text
+    }
+
+    AxiosPublic.post(`/give/review/${product[0]._id}`,reviewData)
+    .then(res=>{
+        console.log(res);
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+
+  }
 
   return (
     <div className="my-10">
@@ -74,6 +105,69 @@ const ProductDetails = () => {
         </div>
       </div>
 
+      {/* Give Reviews */}
+
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
+      <div className="flex justify-between md:px-5 mt-10">
+        <h2 className="text-xl font-medium">All Reviewers</h2>
+        <div>
+          <button
+            className="btn bg-blue-300 md:w-60"
+            onClick={() => document.getElementById("my_modal_4").showModal()}
+          >
+            Give Review
+          </button>
+          <dialog id="my_modal_4" className="modal">
+            <div className="modal-box w-fit max-w-5xl">
+              <div className="modal-action flex flex-col gap-2">
+                <form onSubmit={handleGiveReview}>
+                  <label className="input input-bordered flex items-center gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      className="w-4 h-4 opacity-70"
+                    >
+                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                    </svg>
+                    <input
+                      type="text"
+                      className="grow"
+                      placeholder="Username"
+                      name="name"
+                      defaultValue={user?.displayName}
+                      readOnly
+                    />
+                  </label>
+                  <label className="input input-bordered flex items-center gap-2">
+                    <input
+                      type="number"
+                      className="grow"
+                      placeholder="Give Ratings"
+                      name="rating"
+                      required
+                    />
+                  </label>
+                  <label className="input input-bordered flex items-center gap-2">
+                    <input
+                      type="text"
+                      className="grow"
+                      placeholder="write your comment"
+                      name="comment"
+                    />
+                  </label>
+                  <input className="btn btn-sm w-full mt-5" type="submit" value="submit" />
+                </form>
+                <form className="flex justify-end" method="dialog">
+                  {/* if there is a button, it will close the modal */}
+                  <button className="btn">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+      </div>
+
       {/* users reviews */}
 
       <div className="mt-7">
@@ -97,7 +191,9 @@ const ProductDetails = () => {
                 <span className="flex gap-4 items-center">
                   <AiOutlineDislike /> {reviewer?.dislikes}
                 </span>
-                <button className="btn btn-sm btn-outline"><CiLocationArrow1 /> Replay</button>
+                <button className="btn btn-sm btn-outline">
+                  <CiLocationArrow1 /> Replay
+                </button>
               </div>
             </div>
           ))}
