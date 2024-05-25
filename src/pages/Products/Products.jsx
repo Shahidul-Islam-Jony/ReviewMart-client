@@ -1,7 +1,11 @@
-import phone from "../../assets/images/iphone.jpg";
+import useGetAllProducts from "../../hooks/useGetAllProducts";
 
 const Products = () => {
-  let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const [products,isLoading] = useGetAllProducts();
+  // console.log(products);
+  if(isLoading){
+    return <div className="text-5xl flex justify-center items-center min-h-screen"><span className="loading size-16 loading-spinner text-info"></span></div>
+  }
   return (
     <div className="my-10">
       <div className="flex justify-evenly my-7">
@@ -26,18 +30,18 @@ const Products = () => {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4">
-        {arr.map((item, idx) => (
-          <div key={idx}>
+        {products?.map((product) => (
+          <div key={product?._id}>
             <div className="card card-compact w-96 bg-base-100 shadow-xl">
               <figure>
-                <img src={phone} alt="Shoes" />
+                <img src={product?.image} className="w-full h-60" alt={product?.name} />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">iphone 15 pro</h2>
+                <h2 className="card-title">{product?.name}</h2>
               </div>
               <div className="flex justify-between p-4">
-                <p>price : $999</p>
-                <p>Ratings: 5.00</p>
+                <p>price : $ {product?.price}</p>
+                <p>Ratings: {product?.average_rating}</p>
               </div>
             </div>
           </div>
