@@ -39,7 +39,7 @@ const Products = () => {
 
   return (
     <div className="my-10">
-      <div className="flex my-7">
+      <div className="flex flex-col md:flex-row my-7">
         <div className="flex items-center justify-center gap-4 w-full">
           <h4 className="text-xl font-bold">Sorting :</h4>
           <select
@@ -72,7 +72,7 @@ const Products = () => {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {
         sortedProducts?.map((product) => (
           <Link to={`/product/details/${product?._id}`} key={product?._id}>
