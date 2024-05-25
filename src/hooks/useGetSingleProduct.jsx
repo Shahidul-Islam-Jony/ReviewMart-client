@@ -10,7 +10,7 @@ const useGetSingleProduct = (id) => {
             return res.data;
         }
     })
-    // console.log(products);
+    // console.log(product);
     return [product, isLoading, refetch];
 }
 
