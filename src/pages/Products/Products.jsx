@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useGetAllProducts from "../../hooks/useGetAllProducts";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   let [products, isLoading] = useGetAllProducts();
@@ -38,8 +39,9 @@ const Products = () => {
 
   return (
     <div className="my-10">
-      <div className="flex justify-evenly my-7">
-        <div>
+      <div className="flex my-7">
+        <div className="flex items-center justify-center gap-4 w-full">
+          <h4 className="text-xl font-bold">Sorting :</h4>
           <select
           onChange={handleSort}
           className="select select-info w-full max-w-xs"
@@ -51,7 +53,8 @@ const Products = () => {
             <option value="high to low">high to low</option>
           </select>
         </div>
-        <div>
+        <div className="flex items-center justify-center gap-4 w-full">
+          <div className="text-xl font-bold">Filter : </div>
           <select
             onChange={handleCategory}
             className="select select-info w-full max-w-xs"
@@ -72,7 +75,7 @@ const Products = () => {
       <div className="grid grid-cols-3 gap-4">
         {
         sortedProducts?.map((product) => (
-          <div key={product?._id}>
+          <Link to={`/product/details/${product?._id}`} key={product?._id}>
             <div className="card card-compact w-96 bg-base-100 shadow-xl">
               <figure>
                 <img
@@ -89,7 +92,7 @@ const Products = () => {
                 <p>Ratings: {product?.average_rating}</p>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
