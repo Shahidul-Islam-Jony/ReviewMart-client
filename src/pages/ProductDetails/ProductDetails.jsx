@@ -37,6 +37,7 @@ const ProductDetails = () => {
     AxiosPublic.post(`/give/review/${product[0]._id}`,reviewData)
     .then(res=>{
         console.log(res);
+        alert('Review submitted')
     })
     .catch(err=>{
         console.log(err);
