@@ -16,11 +16,11 @@ const ProductDetails = () => {
   const product = useGetSingleProduct(id);
   console.log(product);
 
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const AxiosPublic = useAxiosPublic();
 
-  const handleGiveReview = e =>{
+  const handleGiveReview = (e) => {
     e.preventDefault();
     const form = e.target;
     const reviewer_name = form.name.value;
@@ -29,21 +29,20 @@ const ProductDetails = () => {
     // console.log(reviewer_name,review_text,rating);
 
     const reviewData = {
-        reviewer_name,
-        rating,
-        review_text
-    }
+      reviewer_name,
+      rating,
+      review_text,
+    };
 
-    AxiosPublic.post(`/give/review/${product[0]._id}`,reviewData)
-    .then(res=>{
+    AxiosPublic.post(`/give/review/${product[0]._id}`, reviewData)
+      .then((res) => {
         console.log(res);
-        alert('Review submitted')
-    })
-    .catch(err=>{
+        alert("Review submitted");
+      })
+      .catch((err) => {
         console.log(err);
-    })
-
-  }
+      });
+  };
 
   return (
     <div className="my-10">
@@ -157,7 +156,11 @@ const ProductDetails = () => {
                       name="comment"
                     />
                   </label>
-                  <input className="btn btn-sm w-full mt-5" type="submit" value="submit" />
+                  <input
+                    className="btn btn-sm w-full mt-5"
+                    type="submit"
+                    value="submit"
+                  />
                 </form>
                 <form className="flex justify-end" method="dialog">
                   {/* if there is a button, it will close the modal */}
@@ -175,14 +178,14 @@ const ProductDetails = () => {
         {product[0]?.reviews &&
           product[0].reviews.map((reviewer) => (
             <div className="bg-blue-200 mb-3 p-4 rounded-lg" key={reviewer._id}>
-              <h2>{reviewer.reviewer_name}</h2>
+              <h2>{reviewer?.reviewer_name}</h2>
               <div className="flex gap-4">
                 <Rating
                   style={{ maxWidth: 80 }}
                   value={reviewer?.rating}
                   readOnly
                 />
-                <p>{reviewer.date.split("T")[0]}</p>
+                <p>{reviewer.date && reviewer?.date.split("T")[0]}</p>
               </div>
               <p>{reviewer?.review_text}</p>
               <div className="flex gap-8 items-center text-xl">

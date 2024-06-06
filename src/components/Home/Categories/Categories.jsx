@@ -10,24 +10,24 @@ const Categories = () => {
         <h3 className="text-3xl font-bold">Categories</h3>
         <p>Find what you are looking for</p>
       </div>
-      <div className="bg-blue-300 pb-10">
-        <div className="grid md:grid-cols-2 lg:relative p-10 gap-6 justify-center text-center">
-          <div className="lg:absolute -top-14 left-10">
+      <div className="bg-blue-300 pb-10 px-2">
+        <div className="flex flex-col lg:flex-row lg:relative py-10 gap-6 justify-between text-center">
+          <div className="lg:absolute right-[74%] left-[3%] -top-10">
             <img
               src={iphone}
-              className="w-80 border-2 rounded-lg h-96"
+              className="w-full border-2 rounded-lg h-96"
               alt=""
             />
             <p className="font-bold">Phone</p>
           </div>
-          <div className="lg:absolute top-10 left-1/3">
-            <img src={laptop} className="w-96 h-96 rounded-lg" alt="" />
+          <div className="lg:absolute left-[38%] right-[38%]">
+            <img src={laptop} className="w-full h-96 rounded-lg" alt="" />
             <p className="font-bold">Laptop</p>
           </div>
-          <div className="lg:absolute -top-14 right-10">
+          <div className="lg:absolute left-[74%] right-[3%] -top-10">
             <img
               src={refregrator}
-              className="w-80 h-96 border-2 rounded-lg"
+              className="w-full h-96 border-2 rounded-lg"
               alt=""
             />
             <p className="font-bold">Refregrator</p>
